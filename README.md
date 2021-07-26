@@ -4,6 +4,7 @@ My LeetCode profile: [Legonaftik](https://leetcode.com/Legonaftik)
 
 * [25. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/25.swift)
 * [91. Decode Ways](https://leetcode.com/problems/decode-ways/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/91.swift)
+* [108. Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/108.swift)
 * [127. Word Ladder](https://leetcode.com/problems/word-ladder/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/127.swift)
 * [162. Find Peak Element](https://leetcode.com/problems/find-peak-element/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/162.swift)
 * [186. Reverse Words in a String II](https://leetcode.com/problems/reverse-words-in-a-string-ii/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/186.swift)
