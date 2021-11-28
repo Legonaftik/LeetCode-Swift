@@ -3,6 +3,7 @@ You can paste the solutions directly into LeetCode and they will work
 My LeetCode profile: [Legonaftik](https://leetcode.com/Legonaftik)
 
 * [1. Two Sum](https://leetcode.com/problems/two-sum/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/1.swift)
+* [2. Add Two Numbers](https://leetcode.com/problems/add-two-numbers/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/2.swift)
 * [16. 3Sum Closest](https://leetcode.com/problems/3sum-closest/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/16.swift)
 * [25. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/25.swift)
 * [36. Valid Sudoku](https://leetcode.com/problems/valid-sudoku/) - [Solution](https://github.com/Legonaftik/LeetCode-Swift/blob/main/Solutions/36.swift)
