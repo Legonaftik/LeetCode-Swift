@@ -8,15 +8,15 @@ class Solution {
         var answer: [[Int]] = []
 
         var previousPivotNum: Int?
-        for pivot in 0..<(nums.endIndex-2) {
+        for pivot in 0...(nums.endIndex-3) {
             if nums[pivot] > 0 {
-                continue
+                break // Everything after that will be even larger because the array is sorted
             } else if nums[pivot] == previousPivotNum {
                 continue
             } else {
                 previousPivotNum = nums[pivot]
             }
-            
+
             var lower = pivot + 1
             var higher = nums.endIndex - 1
             while lower < higher {
@@ -27,10 +27,15 @@ class Solution {
                     lower += 1
                 } else {
                     answer.append([nums[pivot], nums[lower], nums[higher]])
-                    higher -= 1
-                    var previousLowerNum = nums[lower]
-                    while lower < nums.endIndex && nums[lower] == previousLowerNum {
+
+                    let previousLowerNum = nums[lower]
+                    while lower < higher && nums[lower] == previousLowerNum {
                         lower += 1
+                    }
+                    
+                    let previousHigherNum = nums[higher]
+                    while lower < higher && nums[higher] == previousHigherNum {
+                        higher -= 1
                     }
                 }
             }
