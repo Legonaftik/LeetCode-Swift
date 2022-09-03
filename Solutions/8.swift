@@ -1,30 +1,43 @@
 class Solution {
     func myAtoi(_ s: String) -> Int {
-        var sign = 1
-        var num = 0
-        var index = 0
-        let chars = Array(s)
+        let firstNonSpaceIndex = s.firstIndex(where: { $0 != " " }) ?? s.endIndex
+        if firstNonSpaceIndex == s.endIndex { return 0 }
 
-        while index < chars.endIndex && chars[index] == " " {
-            index += 1
-        }
-
-        if index < chars.endIndex && chars[index] == "+" {
-            sign = 1
-            index += 1
-        } else if index < chars.endIndex && chars[index] == "-" {
-            sign = -1
-            index += 1
-        }
-
-        while index < chars.endIndex, let digit = Int(String(chars[index])) {
-            if (num > Int32.max / 10) || (num == Int32.max / 10 && digit > Int32.max % 10) {
-                return Int(sign == 1 ? Int32.max : Int32.min)
+        let signMultiplier: Int = {
+            if s[firstNonSpaceIndex] == "-" {
+                return -1
+            } else {
+                return 1
             }
-            num = 10 * num + digit
-            index += 1
+        }()
+
+        let firstDigitIndex: String.Index = {
+            let char = s[firstNonSpaceIndex]
+            if char == "+" || char == "-" {
+                return s.index(after: firstNonSpaceIndex)   
+            } else if char.isNumber {
+                return firstNonSpaceIndex
+            } else {
+                return s.endIndex
+            }
+        }()
+        if firstDigitIndex == s.endIndex { return 0 }
+
+        var result = 0
+        let lowerLimit = -Int(pow(2.0, 31.0))
+        let upperLimit = Int(pow(2.0, 31.0)) - 1
+
+        for char in s[firstDigitIndex...] {
+            guard let digit = char.wholeNumberValue else { return result }
+            result *= 10
+            result += (digit * signMultiplier)
+            if result >= upperLimit {
+                return upperLimit
+            } else if result <= lowerLimit {
+                return lowerLimit
+            }
         }
 
-        return sign * num
+        return result
     }
 }
