@@ -1,23 +1,44 @@
 class Solution {
     func setZeroes(_ matrix: inout [[Int]]) {
-        var rowsToNullify: Set<Int> = []
-        var colsToNullify: Set<Int> = []
+        var nullifyFirstRow = false
+        for col in matrix[0].indices {
+            if matrix[0][col] == 0 {
+                nullifyFirstRow = true
+                break
+            }
+        }
+        var nullifyFirstCol = false
         for row in matrix.indices {
-            for col in matrix[0].indices {
+            if matrix[row][0] == 0 {
+                nullifyFirstCol = true
+                break
+            }
+        }
+        
+        for row in 1..<matrix.endIndex {
+            for col in 1..<matrix[0].endIndex {
                 if matrix[row][col] == 0 {
-                    rowsToNullify.insert(row)
-                    colsToNullify.insert(col)
+                    matrix[0][col] = 0
+                    matrix[row][0] = 0
                 }
             }
         }
-        for row in rowsToNullify {
-            for col in matrix[0].indices {
-                matrix[row][col] = 0
+        for row in 1..<matrix.endIndex {
+            for col in 1..<matrix[0].endIndex {
+                if matrix[0][col] == 0 || matrix[row][0] == 0 {
+                    matrix[row][col] = 0
+                }
             }
         }
-        for col in colsToNullify {
+        
+        if nullifyFirstRow {
+            for col in matrix[0].indices {
+                matrix[0][col] = 0
+            }
+        }
+        if nullifyFirstCol {
             for row in matrix.indices {
-                matrix[row][col] = 0
+                matrix[row][0] = 0
             }
         }
     }
