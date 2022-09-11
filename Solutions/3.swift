@@ -1,17 +1,15 @@
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
-        var charToLastIndex: [Character: Int] = [:]
         var answer = 0
-
-        for (index, char) in s.enumerated() { // O(s.count)
-            if let lastIndexOfDuplicate = charToLastIndex[char] {
-                // O(charToLastIndex.count)
-                charToLastIndex = charToLastIndex.filter { $1 > lastIndexOfDuplicate }
+        var charToPreviousIndex: [Character: Int] = [:]
+        var lower = 0
+        for (upper, char) in s.enumerated() {
+            if let previousIndexOfDuplicate = charToPreviousIndex[char] {
+                lower = max(lower, previousIndexOfDuplicate + 1)
             }
-            charToLastIndex[char] = index
-            answer = max(answer, charToLastIndex.count)
+            answer = max(answer, upper - lower + 1)
+            charToPreviousIndex[char] = upper
         }
-
         return answer
     }
 }
