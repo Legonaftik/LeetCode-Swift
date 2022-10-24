@@ -1,5 +1,4 @@
 class Solution {
-    
     private let digitToString: [Character: String] = [
         "2": "abc",
         "3": "def",
@@ -18,24 +17,21 @@ class Solution {
 
         let strings = digits.map { digitToString[$0]! }
         var combinations: [String] = []
+        var currentCombination = ""
 
-        func letterCombinations(
-            startIndex: Int,
-            currentCombination: String
-        ) {
+        func letterCombinations(startIndex: Int) {
             if startIndex >= strings.endIndex {
                 combinations.append(currentCombination)
             } else {
-                for char in strings[startIndex] { 
-                    letterCombinations(
-                        startIndex: startIndex+1,
-                        currentCombination: currentCombination + String(char)
-                    )
+                for char in strings[startIndex] {
+                    currentCombination.append(char)
+                    letterCombinations(startIndex: startIndex+1)
+                    currentCombination.removeLast()
                 }
             }
         }
 
-        letterCombinations(startIndex: 0, currentCombination: "")
+        letterCombinations(startIndex: 0)
         return combinations
     }
 }
