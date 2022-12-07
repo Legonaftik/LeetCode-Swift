@@ -1,41 +1,59 @@
 class Solution {
     func generateMatrix(_ n: Int) -> [[Int]] {
-        var answer = Array(
+        enum Direction {
+            case right, bottom, left, top
+        }
+        struct Cell {
+            var row: Int
+            var col: Int
+        }
+        var right = n-1
+        var bottom = n-1
+        var left = 0
+        var top = 1
+        var direction = Direction.right
+        var cell = Cell(row: 0, col: 0)
+        var output = Array(
             repeating: Array(repeating: 0, count: n),
             count: n
         )
-        var counter = 1
-
-        for layer in 0..<( (n+1)/2 ) {
-            if n-layer >= layer {
-                for column in layer..<(n-layer) {
-                    answer[layer][column] = counter
-                    counter += 1
-                }   
-            }
-
-            if n-layer >= layer+1 {
-                for row in (layer+1)..<(n-layer) {
-                    answer[row][n-layer-1] = counter
-                    counter += 1
+        for iteration in 1...(n*n) {
+            output[cell.row][cell.col] = iteration
+            switch direction {
+            case .right:
+                if cell.col < right {
+                    cell.col += 1
+                } else {
+                    direction = .bottom
+                    cell.row += 1
+                    right -= 1
+                }
+            case .bottom:
+                if cell.row < bottom {
+                    cell.row += 1
+                } else {
+                    direction = .left
+                    cell.col -= 1
+                    bottom -= 1
+                }
+            case .left:
+                if cell.col > left {
+                    cell.col -= 1
+                } else {
+                    direction = .top
+                    cell.row -= 1
+                    left += 1
+                }
+            case .top:
+                if cell.row > top {
+                    cell.row -= 1
+                } else {
+                    direction = .right
+                    cell.col += 1
+                    top += 1
                 }
             }
-
-            if n-layer-1 >= layer {
-                for column in (layer..<n-layer-1).reversed() {
-                    answer[n-layer-1][column] = counter
-                    counter += 1
-                }                
-            }
-
-            if n-layer-1 >= layer+1 {
-                for row in ( (layer+1)..<(n-layer-1) ).reversed() {
-                    answer[row][layer] = counter
-                    counter += 1
-                }   
-            }
         }
-
-        return answer
+        return output
     }
 }
