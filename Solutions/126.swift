@@ -29,7 +29,9 @@ class Solution {
                     let previousWord = previousWordIndex == beginWordIndex ? beginWord : wordList[previousWordIndex]
                     for i in previousWord.indices {
                         for char in allLetters where previousWord[i] != char {
-                            let suffix = i == previousWord.index(before: previousWord.endIndex) ? "" : String(previousWord[previousWord.index(after: i)...])
+                            let suffix = i == previousWord.index(before: previousWord.endIndex)
+                                ? ""
+                                : String(previousWord[previousWord.index(after: i)...])
                             let newWord = String(previousWord[..<i]) + String(char) + suffix
                             if let index = wordToIndex[newWord], !allSeen.contains(index) {
                                 newSeen.insert(index)
