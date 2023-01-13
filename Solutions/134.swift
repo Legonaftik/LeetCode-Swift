@@ -12,10 +12,6 @@ class Solution {
                 start = i + 1
             }
         }
-        if totalTank >= 0 {
-            return start
-        } else {
-            return -1   
-        }
+        return totalTank >= 0 ? start : -1
     }
 }
